@@ -5,5 +5,9 @@
   "main": "index.js",
   "repository": "git@github.com:HazelZ/react-admin.git",
   "author": "HazelZ <525618432@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "3.10.0",
+    "webpack-dev-server": "2.9.7"
+  }
 }
