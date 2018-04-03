@@ -1,0 +1,9 @@
+{
+  "name": "react-admin",
+  "version": "1.0.0",
+  "description": "react-all-admin-webapp",
+  "main": "index.js",
+  "repository": "git@github.com:HazelZ/react-admin.git",
+  "author": "HazelZ <525618432@qq.com>",
+  "license": "MIT"
+}
