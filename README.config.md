@@ -36,10 +36,11 @@ yarn run xxx === npm run xxx
 <!-- 提交master之后，新建dev分支开发 -->
 从master切换到开发分支上  
 - git merge origin master，拉取远程仓库最新的代码  
-= git add ., 追踪文件的变化  
-git commit -am 'message',将代码提交到本地仓库  
-git push, 本地仓库代码推送到远程仓库   
-提交pull request，管理员审核,这个时候已经可以发布了    
+- git add ., 追踪文件的变化  
+- git commit -am 'message',将代码提交到本地仓库  
+- git push, 本地仓库代码推送到远程仓库 
+- git push --set-upstream origin dev 将本地新增的分支提交到远程仓库    
+- 提交pull request，管理员审核,这个时候已经可以发布了    
 
 
 
