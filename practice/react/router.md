@@ -25,14 +25,32 @@
 	 console.log(window.location.search); //取从当前URL的?号开始的字符串
 
 };    
---
-window.location 对象所包含的属性
-属性	描述
-hash	从井号 (#) 开始的 URL（锚）
-host	主机名和当前 URL 的端口号
-hostname	当前 URL 的主机名
-href	完整的 URL
-pathname	当前 URL 的路径部分
-port	当前 URL 的端口号
-protocol	当前 URL 的协议
-search	从问号 (?) 开始的 URL（查询部分）
+
+- window.location 对象所包含的属性  
+属性	描述  
+hash	从井号 (#) 开始的 URL（锚）  
+host	主机名和当前 URL 的端口号  
+hostname	当前 URL 的主机名  
+href	完整的 URL  
+pathname	当前 URL 的路径部分  
+port	当前 URL 的端口号  
+protocol	当前 URL 的协议  
+search	从问号 (?) 开始的 URL（查询部分）  
+
+
+- React-router
+<BrowserRouter></BrowserRouter>是基于H5的router API实现的，要后端配合    
+<HashRouter>基于hash router实现
+Route，路由规则  
+Switch,路由选项
+
+
+
+##应用场景
+- 状态提升：组件层级扁平，兄弟组件通信情况很少
+- 发布订阅：业务规模小，层级较深的业务
+- redux单向数据流:业务复杂，组件层级较深，保存数据多，兄弟组件通信密切
+
+
+
+
