@@ -68,7 +68,8 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
-			page: path.resolve(__dirname, 'src/page')
+			page: path.resolve(__dirname, 'src/page'),
+			component: path.resolve(__dirname, 'src/component')
 		}
 	},
 	plugins: [
@@ -78,13 +79,17 @@ module.exports = {
 		}),
 		// 独立css文件
 		new ExtractTextPlugin('css/[name].css'),
-		// 提出公共模块
+		// 提出公共模块(自动将出现次数多的重复部分合并到一个文件里)
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'common',
 			filename: 'js/base.js'
 		})
 	],
 	devServer: {
-		port: 8088
+		port: 8088,
+		// 访问路径时如果404，返回一个指定页面，也可以在访问网站根目录时返回这个页面
+		historyApiFallback: {
+			index: '/dist/index.html'
+		}
 	}
 };
