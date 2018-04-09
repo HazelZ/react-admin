@@ -66,7 +66,10 @@ module.exports = {
 	},
 	// 引入文件的时候可以省略文件后缀
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: ['.js', '.jsx'],
+		alias: {
+			page: path.resolve(__dirname, 'src/page')
+		}
 	},
 	plugins: [
 		// 处理html文件
