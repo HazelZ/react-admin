@@ -16,7 +16,8 @@ node-sass
 - Yarn安装，在Nodejs环境下全局安装  
 npm install yarn -g		
 
-yarn --version 查看yarn版本
+yarn --version 查看yarn版本    
+
 yarn init        ===     npm init   
 yarn install     ===     npm install    
 yarn global add  ===     npm install -g   

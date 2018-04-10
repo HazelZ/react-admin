@@ -5,7 +5,7 @@ class TopNav extends Component{
 		return(
 			<div className="navbar navbar-default top-navbar" role="navigation">
         <div className="navbar-header">
-            <a className="navbar-brand" href="index.html"><b>In</b>sight</a>
+          <a className="navbar-brand" href="index.html"><b>Hazel</b>Mall</a>
         </div>
 
             <ul className="nav navbar-top-links navbar-right">
