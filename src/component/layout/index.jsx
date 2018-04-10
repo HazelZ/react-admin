@@ -3,7 +3,7 @@ import React,{ Component } from 'react';
 
 import TopNav from 'component/_topNav/index';
 import SideNav from 'component/_sideNav/index';
-import './theme.css';
+import './theme.scss';
 
 class Layout extends Component{
 	constructor(props){

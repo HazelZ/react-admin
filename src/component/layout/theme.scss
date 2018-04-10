@@ -1,0 +1,342 @@
+/*
+  Author : HazelZ
+*/
+
+/*----------------------------------------------
+    COMMON  STYLES    
+------------------------------------------------*/
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f3f3f3;
+}
+
+h1,.h1,h2,.h2,h3,.h3 {
+  margin-top: 7px;
+  margin-bottom: -5px;
+}
+
+h2 {
+  color: #000;
+}
+
+h4 {
+  padding-top: 10px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 25px;
+  padding-top: 20px;
+}
+footer p {
+  font-size: 14px;
+}
+
+.text-center {
+  text-align: center;   
+}
+
+.no-boder {
+  border: 1px solid #f3f3f3;
+}
+
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  padding: 6px 0;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.428571429;
+}
+
+.square-btn-adjust {
+  border: 0px solid transparent;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.panel {
+  border-radius: 0px;
+}
+
+
+.breadcrumb {
+  padding: 0;
+  margin-bottom: 20px;
+  list-style: none;
+  /* background-color: #FAFAFA; */
+  border-radius: 0;
+}
+
+.navbar-default {
+  border: 0px solid black;
+}
+
+.nav .open>a,
+.nav .open>a:hover,
+.nav .open>a:focus {
+  background-color: #2497BA;
+  border-color: #428bca;
+}
+
+
+// main body
+#wrapper {
+  width: 100%;
+
+// top-bar
+  .top-navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 300;
+    margin: 0px;
+    background: #fff;
+    border-bottom: none;
+    -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+    
+    @media screen and(max-width:768px) {
+      position: relative;
+    }
+    .navbar-header {
+      background: transparent;
+    }
+    .navbar-brand {
+      color: #fff;
+      width: 260px;
+      text-align: left;
+      height: 60px;
+      font-size: 30px;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 30px;
+      background: #32323a;
+      
+      @media screen and(max-width:768px) {
+        width: 100%;
+      }
+        &:hover{
+          color: #2DAFCB;
+          background-color: rgb(43, 46, 51);
+        }
+
+        b {
+          color: #2DAFCB;
+          margin-right: 5px;
+        }
+      }
+
+    .nav{
+      & > li{
+        position: relative;
+        display: inline-block;
+        margin: 0px;
+        padding: 0 10px;
+        
+        .dropdown-menu {
+          min-width: 230px;
+          border-radius: 0 0 4px 4px;
+          margin: 0;
+
+          &>li{
+            a{
+              cursor:pointer;
+
+              &:hover,
+              &:focus{
+                color: #225081;
+                background: none;
+              }
+            }
+          }
+        }
+        .dropdown-user li {
+          margin: 8px 0;
+        }
+        &:hover .dropdown-menu {
+          display: block;
+        }
+        & > a{
+          position: relative;
+          display: block;
+          padding: 20px;
+          color: #FFFFFF;
+          margin: 0px;
+
+          span {
+            color: #333;
+            padding: 0 10px;
+          }
+          i{
+            margin-right: 2px;
+            color: #666;
+          }
+        }
+
+        & > a:hover,
+        & > a:focus{
+          text-decoration: none;
+          background: transparent;
+
+          .fa-caret-down,span{
+            color: #319DB5 !important;
+          }
+        }
+      }
+    }
+    .navbar-right {
+      margin-right: 0;
+      @media screen and(max-width:768px) {
+        margin-right: 0;
+      }
+    }
+  }
+ 
+  .navbar-toggle {
+    border-color: #fff;
+    .icon-bar {
+      background-color: #fff;
+    }
+  }
+  .navbar-toggle:hover,
+  .navbar-toggle:focus {
+      background-color: #B40101;
+  }
+
+
+// navbar-side
+  .navbar-side {
+    z-index: 1;
+    width: 260px;
+    background: #2b2e33;
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    border: none;
+    overflow-y: auto;
+
+    @media screen and(max-width:768px) {
+      z-index: 1;
+      width: 100%;
+      top: 0;
+      position: relative;
+    }
+    
+    &::-webkit-scrollbar{
+      width:6px;
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color:rgba(45,175,203,.4);
+      border-radius:10px;
+      box-shadow:0 0 2px #fff;
+    }
+
+    .active-menu {
+      background-color: #2DAFCB !important;
+      color: #fff !important;
+      i {
+        color: #fff !important;
+      }
+    }
+
+    .arrow {
+      float: right;
+      margin-top: 8px;
+    }
+
+    .fa.arrow:before {
+      content: "\f104";
+    }
+    .active>a>.fa.arrow:before {
+      content: "\f107";
+    }
+    
+    .nav{
+      li{
+        a{
+          i {
+            color: #B5B5B5;
+            padding: 8px;
+            width: 30px;
+            text-align: center;
+           }
+        }
+      }
+    }
+
+    .nav.nav-second-level.collapse.in {
+      background: #17191B;
+    }
+    .sidebar-collapse{
+      background: none;
+
+      .nav{
+        padding:0;
+        background: none;
+        li{
+          border-bottom: 1px solid rgba(107, 108, 109, 0.19);
+          a {
+            color: #B5B5B5;
+            background: transparent;
+            text-shadow: none;
+            padding: 10px 15px;
+            &:hover,
+            &:focus{
+              outline: 0;
+            }
+          }
+        }
+      }
+
+      .nav-second-level{
+        li{
+          border-bottom: none !important;
+          a {
+              padding-left: 37px;
+          }
+        }
+      }
+
+    .nav-third-level{
+      li{
+        border-bottom: none !important;
+        a {
+            padding-left: 55px;
+        }
+      }
+    }
+    }
+  }
+
+  // dashboard
+  #page-wrapper {
+    position: relative;
+    top: 55px;
+    margin: 0 0 0 260px;
+    padding: 15px 15px;
+    
+    @media screen and(max-width:768px) {
+      margin: 0;
+      top: 0;
+      padding: 15px 30px;
+    }
+
+    #page-inner {
+      width: 100%;
+      margin: 10px 20px 10px 0px;
+      background-color: transparent;
+      padding: 10px;
+
+      .page-header {
+        padding-bottom: 9px;
+        margin: 10px 0 20px;
+        border-bottom: 1px solid transparent;
+      }
+    }
+  }
+}
