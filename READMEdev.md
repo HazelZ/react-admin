@@ -14,4 +14,5 @@
 用户
 --用户管理
 
-NavLink提供了一个 activeClassName 属性，判断当to指向的路径和当前路径一致时，自动加上这个active样式  
+NavLink提供了一个 activeClassName 属性，判断当to指向的路径和当前路径一致时，自动加上这个active样式
+注意exact属性，完全匹配时调到相应路径  

@@ -1,15 +1,17 @@
 import React,{ Component } from 'react';
-import './index.css';
 
+import './index.css';
+import PageTitle from 'component/_pageTitle/index';
 
 class Home extends Component {
 	render(){
 		return(
 			<div id="page-wrapper">
 				<div id="page-inner">
+					<PageTitle title="首页" />
 					<div className="row">
 						<div className="col-md-12">
-							<h1 className="page-header">Dashboard</h1>
+							dsd
 						</div>
 					</div>
 				</div>
