@@ -14,7 +14,10 @@ class App extends Component {
 					<Layout>
 						<Switch>
 							<Route exact path="/" component={Home} />
-							<Redirect from="*" to="/" />
+							<Route path="/product" component={Home} />
+							<Route path="/product.category" component={Home} />
+							<Route path="/order" component={Home} />
+							<Route path="/user" component={Home} />
 						</Switch>
 					</Layout>
 				</BrowserRouter>
