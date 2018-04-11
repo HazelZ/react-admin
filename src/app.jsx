@@ -11,6 +11,7 @@ import {
 
 import Home from 'page/home/index';
 import Login from 'page/login/index';
+import ErrorPage from 'page/error/index';
 import Layout from 'component/layout/index';
 
 class App extends Component {
@@ -27,10 +28,10 @@ class App extends Component {
 									<Route path="/product-category" component={Home} />
 									<Route path="/order" component={Home} />
 									<Route path="/user" component={Home} />
+									<Route component={ErrorPage} />
 								</Switch>
 							</Layout>
 						)} />
-						
 					</Switch>
 				</Router>
 			)
