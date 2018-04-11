@@ -10,6 +10,8 @@ node-sass
 "webpack": "3.10.0"		
 "webpack-dev-server": "2.9.7"		
 
+- webpackDevServer: proxy请求代理
+
 - Yarn使用		
 版本锁定，缓存机制，安装速度快  
 

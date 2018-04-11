@@ -80,6 +80,7 @@ var obj = {
 //		  [lastWord]: 'world'
 //		};
 
+// 字符串或表达式做属性名记得加中括号[]
 //		a['first word'] // "hello"
 //		a[lastWord] // "world"
 //		a['last word'] // "world"

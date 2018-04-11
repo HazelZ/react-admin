@@ -69,7 +69,9 @@ module.exports = {
 		extensions: ['.js', '.jsx'],
 		alias: {
 			page: path.resolve(__dirname, 'src/page'),
-			component: path.resolve(__dirname, 'src/component')
+			component: path.resolve(__dirname, 'src/component'),
+			utils: path.resolve(__dirname, 'src/utils'),
+			service: path.resolve(__dirname, 'src/service'),
 		}
 	},
 	plugins: [
@@ -91,6 +93,12 @@ module.exports = {
 		// 访问路径时如果404，返回一个指定页面，也可以在访问网站根目录时返回这个页面
 		historyApiFallback: {
 			index: '/dist/index.html'
+		},
+		proxy: {
+			'/manage': {
+				target: 'http://admintest.happymmall.com',
+				changeOrigin: true
+			}
 		}
 	}
 };
