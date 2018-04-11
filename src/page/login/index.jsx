@@ -47,6 +47,7 @@ class Login extends Component {
     // 验证通过
     if(checkResult.status){
       _user.login(loginInfo).then((res) => {
+        _request.setStorage('userInfo',res);
         this.props.history.push(this.state.redirect);
       },(errMsg) => {
         _request.errorTips(errMsg);

@@ -1,13 +1,29 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import MUtil from 'utils/index';
+import User from 'service/userService';
+
+const _request = new MUtil();
+const _user = new User();
 
 class TopNav extends Component{
   constructor(props){
     super(props)
+    this.state = {
+      username: _request.getStorage('userInfo').username || ''
+    }
   }
-  onLogout(){
 
+  //退出登录
+  onLogout(){
+    _user.logout().then(res => {
+      _request.removeStorage('userInfo');
+      this.props.history.push('/login');
+      // window.location.href = '/login';
+    }, errMsg => {
+      _request.errorTips(errMsg);
+    })
   }
 
 	render(){
@@ -20,7 +36,11 @@ class TopNav extends Component{
                 <li className="dropdown">
                   <a className="dropdown-toggle"  href="javascript:;" aria-expanded="false">
                       <i className="fa fa-user fa-fw"></i> 
-                      <span>欢迎，Hazel</span>
+                      {
+                        this.state.username ? 
+                        <span>欢迎，{this.state.username}</span>
+                        : <span>欢迎您</span>
+                      }
                       <i className="fa fa-caret-down"></i>
                   </a>
                   <ul className="dropdown-menu dropdown-user">

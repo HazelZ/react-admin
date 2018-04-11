@@ -1,7 +1,6 @@
 import MUtil from 'utils/index';
 const _request = new MUtil();
 
-
 class User{
   // 用户登录
   login(loginInfo){
@@ -34,6 +33,14 @@ class User{
       status:true,
       msg: '验证通过！~'
     }
+  }
+
+  // 退出登录
+  logout(){
+    return _request.request({
+      type:'post',
+      url:'/user/logout.do'
+    });
   }
 }
 
