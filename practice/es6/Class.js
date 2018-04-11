@@ -70,6 +70,32 @@ var obj = {
 	}
 }
 
+
+// 直接用标识符作为属性名 obj.foo = true
+// 用表达式作为属性名：obj['a'+'bc'] = 123 //相当于   obj['abc'] = 123
+// ES6 允许字面量定义对象时，用方法二（表达式）作为对象的属性名，即把表达式放在方括号内。
+// var lastWord = 'last word';
+//		var a = {
+//		  'first word': 'hello',
+//		  [lastWord]: 'world'
+//		};
+
+//		a['first word'] // "hello"
+//		a[lastWord] // "world"
+//		a['last word'] // "world"
+//		
+//表达式用来定义方法名
+// let obj = {
+//     ['say' + 'Something']() {
+//         return 'hello word';
+//     }
+// };
+// obj.saySomething(); // hello word
+// 
+// 
+//		注意，属性名表达式与简洁表示法，不能同时使用，会报错。
+//		注意，属性名表达式如果是一个对象，默认情况下会自动将对象转为字符串[object Object]，这一点要特别小心。
+//		
 // ES6
 let name = 'tuotuo',
 		age = 32;

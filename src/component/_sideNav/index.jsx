@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
-
 import { Link, NavLink } from 'react-router-dom';
+
+// import MenuItem from './menu/index'
 
 class SideNav extends Component{
 	render(){

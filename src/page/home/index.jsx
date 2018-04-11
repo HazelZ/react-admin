@@ -1,6 +1,5 @@
 import React,{ Component } from 'react';
 
-import './index.css';
 import PageTitle from 'component/_pageTitle/index';
 
 class Home extends Component {
