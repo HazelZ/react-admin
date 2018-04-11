@@ -1,9 +1,14 @@
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
+import { 
+	BrowserRouter as Router, 
+	Route, 
+	browserHistory, 
+	Switch, 
+	Link, 
+	Redirect
+} from "react-router-dom";
 
-import { BrowserRouter, browserHistory, Router, Switch, Route, Link, Redirect} from "react-router-dom";
-
-// import 'font-awesome/css/font-awesome.min.css';
 import Home from 'page/home/index';
 import Login from 'page/login/index';
 import Layout from 'component/layout/index';
@@ -11,7 +16,7 @@ import Layout from 'component/layout/index';
 class App extends Component {
 	render(){
 		return(
-				<BrowserRouter history={browserHistory}>
+				<Router history={browserHistory}>
 					<Switch>
 						<Route path="/login" component={Login} />
 						<Route path="/" render={ props => (
@@ -27,7 +32,7 @@ class App extends Component {
 						)} />
 						
 					</Switch>
-				</BrowserRouter>
+				</Router>
 			)
 	}
 }
