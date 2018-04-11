@@ -19,8 +19,8 @@ class TopNav extends Component{
   onLogout(){
     _user.logout().then(res => {
       _request.removeStorage('userInfo');
-      this.props.history.push('/login');
-      // window.location.href = '/login';
+      // this.props.history.push('/login');
+      window.location.href = '/login';
     }, errMsg => {
       _request.errorTips(errMsg);
     })
