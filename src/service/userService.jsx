@@ -42,6 +42,25 @@ class User{
       url:'/user/logout.do'
     });
   }
+
+  // 获取用户列表
+  getUserList(pageNum){
+    return _request.request({
+      type: 'post',
+      url: '/manage/user/list.do',
+      data: {
+        pageNum: pageNum
+      }
+    })
+  }
 }
+
+
+
+
+
+
+
+
 
 export default User;

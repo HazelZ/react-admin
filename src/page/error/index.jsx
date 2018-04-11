@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import PageTitle from 'component/_pageTitle/index';
 
 class Error extends Component {
+	constructor(props){
+		super(props)
+	}
+
 	render(){
 		return(
 			<div id="page-wrapper">
