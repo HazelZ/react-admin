@@ -7,7 +7,7 @@ class MUtil{
         url: param.url || '',
         dataType: param.dataType || 'json',
         data: param.data || null,
-        success(res) {
+        success: (res) => {
           // 请求成功
           if( 0 === res.status){
             typeof resolve === 'function' && resolve(res.data, res.msg)
@@ -18,7 +18,7 @@ class MUtil{
             typeof reject === 'function' && reject(res.msg || res.data)
           }
         },
-        error(err){
+        error: (err) => {
           typeof reject === 'function' && reject(err.statusText); //http请求error对象里的
         }
       })
