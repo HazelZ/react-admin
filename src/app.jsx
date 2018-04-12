@@ -11,9 +11,11 @@ import {
 
 import Layout from 'component/layout/index';
 import Home from 'page/home/index';
+import ProductRouter from 'page/product/router';
 import Login from 'page/login/index';
 import ErrorPage from 'page/error/index';
 import UserList from 'page/user/index';
+
 
 class App extends Component {
 	render(){
@@ -21,8 +23,8 @@ class App extends Component {
 				<Layout>
 					<Switch>
 						<Route exact path="/" component={Home} />
-						<Route path="/product" component={Home} />
-						<Route path="/product-category" component={Home} />
+						<Route path="/product" component={ProductRouter} />
+						<Route path="/product-category" component={ProductRouter} />
 						<Route path="/order" component={Home} />
 						<Route path="/user/index" component={UserList} />
 						<Redirect exact from="/user" to='/user/index'/>
