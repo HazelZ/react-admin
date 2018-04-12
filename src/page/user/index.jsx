@@ -14,7 +14,9 @@ class UserList extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			pageNum:1
+			list: [],
+			pageNum:1,
+			firstLoading:true
 		}
 	}
 
@@ -24,13 +26,49 @@ class UserList extends Component{
 	
 	_loadUserList(){
 		_user.getUserList(this.state.pageNum).then(res =>{
-			this.setState(res)
-		},err => {
+			this.setState(res,() => {
+				this.setState({
+					firstLoading:false
+				})
+			});
+		}, (errMsg) => {
+			this.setState({
+				list: []
+			});
 			_request.errorTips(errMsg);
 		})
 	}
 
+// 页数发生变化时，传入当前选中页面，调用this._loadUserList()刷新列表
+	onPageNumChange(pageNum){
+		this.setState({
+			pageNum
+		},() => {
+			this._loadUserList()
+		})
+	}
+
 	render(){
+		let listBody = this.state.list.map((user,index) => {
+				return (
+					<tr key={index}>
+						<td>{user.id}</td>
+						<td>{user.username}</td>
+						<td>{user.email}</td>
+						<td>{user.phone}</td>
+						<td>{new Date(user.createTime).toLocaleString()}</td>
+					</tr>
+				)
+			});
+		let listError = (
+			<tr>
+				<td colSpan="5" className='text-center'>
+					{this.state.firstLoading ? '正在加载数据~' : '没有找到相应的结果~'}
+				</td>
+			</tr>
+			);
+		let tableBody = this.state.list.length > 0 ? listBody : listError;
+
 		return(
 			<div id="page-wrapper">
 				<div id="page-inner">
@@ -40,33 +78,23 @@ class UserList extends Component{
 							<table className="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th>ID</th>
-										<th></th>
-										<th></th>
-										<th></th>
-										<th></th>
+										<th>用户ID</th>
+										<th>用户名</th>
+										<th>邮箱</th>
+										<th>电话</th>
+										<th>注册时间</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>123</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>123</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
+									{ tableBody }							
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<Pagination current={11} total={399} onChange={(current) => console.log(current)} />
+					<Pagination 
+						current={this.state.pageNum} 
+						total={this.state.total} 
+						onChange={(pageNum) => this.onPageNumChange(pageNum)} />
 				</div>
 			</div>
 			)
