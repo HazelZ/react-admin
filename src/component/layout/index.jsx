@@ -1,9 +1,9 @@
 import React,{ Component } from 'react';
 
-
 import TopNav from 'component/_topNav/index';
 import SideNav from 'component/_sideNav/index';
 import './theme.scss';
+import './index.scss';
 
 class Layout extends Component{
 	constructor(props){

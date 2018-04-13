@@ -103,7 +103,14 @@ onSearch(searchType,searchKeyword){
     return(
       <div id="page-wrapper">
         <div id="page-inner">
-        <PageTitle title='商品列表'></PageTitle>
+        <PageTitle title='商品列表'>
+          <div className="page-header-right">
+            <Link to='/product/save' className='btn btn-primary'>
+              <i className="fa fa-plus"></i>
+              <span>添加商品</span>
+            </Link>
+          </div>
+        </PageTitle>
         <ListSearch onSearch={(searchType,searchKeyword) => {this.onSearch(searchType,searchKeyword)}}/>
         <TableList tableHeads={tableHeads}>
           {
