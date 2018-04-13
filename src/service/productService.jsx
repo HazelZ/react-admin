@@ -26,13 +26,36 @@ class Product {
   }
 
   // 变更商品销售状态
-  setProductStatus(productInfo){
+  getProductStatus(productInfo){
     return _mutil.request({
       type: 'post',
       url: '/manage/product/set_sale_status.do',
       data: productInfo
     })
   }
+
+
+  
+  // 品类相关
+  getCategoryList(parentCategoryId){
+    return _mutil.request({
+      type: 'post',
+      url : '/manage/category/get_category.do',
+      data: {
+        categoryId : parentCategoryId || 0
+      }
+    })
+  }
 }
 
 export default Product;
+
+
+
+
+
+
+
+
+
+
