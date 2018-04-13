@@ -1,10 +1,10 @@
-import MUtil from 'utils/index';
-const _request = new MUtil();
+import MUtil from 'utils/mutil';
+const _mutil = new MUtil();
 
 class Statistic{
   // 首页数据统计
   getHomeCount(){
-    return _request.request({
+    return _mutil.request({
       url: '/manage/statistic/base_count.do'
     })
   }

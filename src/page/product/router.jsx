@@ -10,7 +10,7 @@ import {
 
 import ProductList from 'page/product/index/index';
 
-class RroductRouter extends Component {
+class ProductRouter extends Component {
   render(){
     return(
       <Switch>
@@ -22,4 +22,4 @@ class RroductRouter extends Component {
 }
 
 
-export default RroductRouter;
+export default ProductRouter;

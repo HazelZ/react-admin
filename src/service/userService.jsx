@@ -1,10 +1,10 @@
-import MUtil from 'utils/index';
-const _request = new MUtil();
+import MUtil from 'utils/mutil';
+const _mutil = new MUtil();
 
 class User{
   // 用户登录
   login(loginInfo){
-    return _request.request({
+    return _mutil.request({
       type:'post',
       url:'/manage/user/login.do',
       data:loginInfo
@@ -37,7 +37,7 @@ class User{
 
   // 退出登录
   logout(){
-    return _request.request({
+    return _mutil.request({
       type:'post',
       url:'/user/logout.do'
     });
@@ -45,7 +45,7 @@ class User{
 
   // 获取用户列表
   getUserList(pageNum){
-    return _request.request({
+    return _mutil.request({
       type: 'post',
       url: '/manage/user/list.do',
       data: {

@@ -1,10 +1,10 @@
 import React,{ Component } from 'react';
 
 import './index.scss';
-import MUtil from 'utils/index';
+import MUtil from 'utils/mutil';
 import User from 'service/userService';
 
-const _request = new MUtil();
+const _mutil = new MUtil();
 const _user = new User();
 
 class Login extends Component {
@@ -13,7 +13,7 @@ class Login extends Component {
     this.state = {
       username:'',
       password:'',
-      redirect: _request.getUrlParam('redirect') || '/'
+      redirect: _mutil.getUrlParam('redirect') || '/'
     }
   }
 
@@ -47,15 +47,15 @@ class Login extends Component {
     // 验证通过
     if(checkResult.status){
       _user.login(loginInfo).then((res) => {
-        _request.setStorage('userInfo',res);
+        _mutil.setStorage('userInfo',res);
         this.props.history.push(this.state.redirect);
       },(errMsg) => {
-        _request.errorTips(errMsg);
+        _mutil.errorTips(errMsg);
       })
     }
     // 验证不过
     else{
-      _request.errorTips(checkResult.msg);
+      _mutil.errorTips(checkResult.msg);
     }
   }
 

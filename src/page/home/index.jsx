@@ -4,9 +4,9 @@ import { Link, NavLink } from 'react-router-dom';
 import PageTitle from 'component/_pageTitle/index';
 import './index.scss';
 
-import MUtil from 'utils/index';
+import MUtil from 'utils/mutil';
 import Statistic from 'service/statisticService';
-const _request = new MUtil();
+const mutil = new MUtil();
 const _statistic = new Statistic();
 
 class Home extends Component {
@@ -28,7 +28,7 @@ class Home extends Component {
 		_statistic.getHomeCount().then(res => {
 			this.setState(res);
 		}, err => {
-			_request.errorTips(srrMsg);
+			mutil.errorTips(srrMsg);
 		})
 	}
 

@@ -1,28 +1,28 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import MUtil from 'utils/index';
+import MUtil from 'utils/mutil';
 import User from 'service/userService';
 
-const _request = new MUtil();
+const _mutil = new MUtil();
 const _user = new User();
 
 class TopNav extends Component{
   constructor(props){
     super(props)
     this.state = {
-      username: _request.getStorage('userInfo').username || ''
+      username: _mutil.getStorage('userInfo').username || ''
     }
   }
 
   //退出登录
   onLogout(){
     _user.logout().then(res => {
-      _request.removeStorage('userInfo');
+      _mutil.removeStorage('userInfo');
       // this.props.history.push('/login');
       window.location.href = '/login';
     }, errMsg => {
-      _request.errorTips(errMsg);
+      _mutil.errorTips(errMsg);
     })
   }
 
