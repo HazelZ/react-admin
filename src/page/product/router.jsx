@@ -9,12 +9,14 @@ import {
 } from "react-router-dom";
 
 import ProductList from 'page/product/index/index';
+import ProductSave from 'page/product/index/save';
 
 class ProductRouter extends Component {
   render(){
     return(
       <Switch>
         <Route path="/product/index" component={ProductList} />
+        <Route path="/product/save" component={ProductSave} />
         <Redirect exact from="/product" to='/product/index' />
       </Switch>
       )
