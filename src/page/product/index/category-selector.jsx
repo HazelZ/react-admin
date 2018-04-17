@@ -26,20 +26,65 @@ class CategorySelector extends Component {
 	//加载一级分类
 	_loadFirstCategory(){
 		_product.getCategoryList().then( res => {
-			console.log(res.constructor == Array)
-			console.log( typeof res)
+      // console.log(res)
 			this.setState({
-				firstCategoryList : res
-			}, errMsg => {
-				_mutil.errorTips(errMsg);
-			})
-		})
+				firstCategoryList: res
+			});
+		}, errMsg => {
+        _mutil.errorTips(errMsg);
+    });
 	}
 
-	//
+//加载二级分类
+  _loadSecondCategory(){
+    _product.getCategoryList(this.state.secondCategoryId).then( res => {
+      // console.log(res)
+      this.setState({
+        secondCategoryList: res
+      });
+    }, errMsg => {
+      _mutil.errorTips(errMsg);
+    })
+  }
+
+	//一级品类变化时二级列表相应生成
 	onFirstCategoryChange(e){
-
+    let newValue = e.target.value || 0;
+    // console.log(newValue)
+    this.setState({
+      firstCategoryId: newValue,
+      secondCategoryId: 0,
+      secondCategoryList:[]
+    }, () => {
+      // 前面清空一下，再异步更新二级品类
+      this._loadSecondCategory();
+      this.onPropsCategoryChange();
+    })
 	}
+// 选择二级品类时
+  onSecondCategoryChange(e){
+    let newValue = e.target.value || 0;
+    // console.log(newValue)
+    this.setState({
+      secondCategoryId: newValue,
+    }, () => {
+      this.onPropsCategoryChange();
+    })
+  }
+
+  // 传给父组件选中的结果
+  onPropsCategoryChange(){
+    // 判断props里的回调函数存在
+    let categoryChangable = typeof this.props.onCategoryChange === 'function';
+    // 如果有二级品类
+    if(this.state.secondCategoryId){
+      categoryChangable && this.props.onCategoryChange(this.state.secondCategoryId, this.state.firstCategoryId)
+    }
+    // 如果只有一级品类
+    else{
+      categoryChangable && this.props.onCategoryChange(this.state.firstCategoryId, 0);
+    }
+  }
 
   render(){
     return(
@@ -49,16 +94,27 @@ class CategorySelector extends Component {
           <select 
           	className='form-control cate-select'
           	onChange={(e) => this.onFirstCategoryChange(e)}>
-            <option value="请选择一级分类"></option>
+            <option value="请选择一级分类">请选择一级分类</option>
             {
             	this.state.firstCategoryList.map((category,index) => {
             		return <option value={category.id} key ={index}>{category.name}</option>
             	})
             }
           </select>
-          <select name="" className='form-control cate-select'>
-            <option value="请选择一级分类"></option>
-          </select>
+          {
+            this.state.secondCategoryList.length >0 ?
+            (<select className='form-control cate-select'
+              onChange={(e) => this.onSecondCategoryChange(e)}>
+            <option value="请选择二级分类">请选择二级分类</option>
+            {
+              this.state.secondCategoryList.map((category,index) => {
+                return <option value={category.id} key ={index}>{category.name}</option>
+              })
+            }
+          </select>)
+          : null
+          }
+          
         </div>
       </div>
     	)

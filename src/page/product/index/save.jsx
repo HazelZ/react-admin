@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import PageTitle from 'component/_pageTitle/index';
 import CategorySelector from 'page/product/index/category-selector';
 
+import FileUploader from 'utils/fileUploader/index';
 import MUtil from 'utils/mutil';
 import Product from 'service/productService';
 
@@ -10,6 +11,16 @@ const _product = new Product();
 
 
 class ProductSave extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      categoryId: 0,
+      parentCategoryId: 0
+    }
+  }
+  onCategoryChange(categoryId,parentCategoryId){
+    console.log(categoryId,parentCategoryId)
+  }
   render(){
     return(
       <div id="page-wrapper">
@@ -28,7 +39,8 @@ class ProductSave extends Component {
                 <input type="text" className="form-control" placeholder="请输入商品描述" />
               </div>
             </div>
-            <CategorySelector />
+            <CategorySelector 
+            onCategoryChange={(categoryId,parentCategoryId) => this.onCategoryChange(categoryId,parentCategoryId)} />
             <div className="form-group">
               <label className="col-md-2 control-label">商品价格</label>
               <div className="col-md-3">
@@ -50,7 +62,7 @@ class ProductSave extends Component {
             <div className="form-group">
               <label className="col-md-2 control-label">商品图片</label>
               <div className="col-md-10">
-                图片组件
+                <FileUploader />
               </div>
             </div>
             <div className="form-group">
