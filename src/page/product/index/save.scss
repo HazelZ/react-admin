@@ -1,0 +1,35 @@
+$width:80px;
+
+.img-wrap{
+  width:$width;
+  height:$width;
+  float:left;
+  margin-right:20px;
+  border:1px solid #ccc;
+  position:relative;
+
+  .img{
+    width:100%;
+    height:100%;
+  }
+  .fa-close{
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    display:none;
+    cursor:pointer;
+    text-align:center;
+    color:#aaa;
+    height: $width;
+    line-height: $width;
+    background:rgba(0,0,0,.2);
+  }
+  &:hover .fa-close{
+    display:block;
+  }
+}
+.file-upload-con{
+  margin-top:10px;
+}
