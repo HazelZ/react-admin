@@ -77,7 +77,6 @@ class Product {
       }
     }
  
-
     return result;
   }
 

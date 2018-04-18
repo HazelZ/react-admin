@@ -16,6 +16,7 @@ class ProductSave extends Component {
   constructor(props){
     super(props);
     this.state = {
+      id: this.props.match.params.pid,
       name:'',
       subtitle:'',
       price:'',
@@ -25,6 +26,27 @@ class ProductSave extends Component {
       parentCategoryId: 0,
       subImages: [],
       status:1   //商品状态1 为在售
+    }
+  }
+  componentDidMount(){
+    this._loadProduct();
+  }
+  // 加载商品详情
+  _loadProduct(){
+    // 有id的时候，表示是编辑功能，需要表单回填=======todo
+    if(this.state.id){
+      _product.getProduct(this.state.id).then( (res) => {
+        console.log(res);
+        let images = this.state.subImages.split(',');
+        res.subImages = images.map((img) => {
+          return {
+            uri:img,
+            url:img.imagehost
+          }
+        })
+      }, (errMsg) => {
+        _mutil.errorTips(errMsg)
+      })
     }
   }
 
