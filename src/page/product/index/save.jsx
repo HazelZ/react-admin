@@ -16,14 +16,33 @@ class ProductSave extends Component {
   constructor(props){
     super(props);
     this.state = {
+      name:'',
+      subtitle:'',
+      price:'',
+      stock:'',
+      detail:'',
       categoryId: 0,
       parentCategoryId: 0,
-      subImages: []
+      subImages: [],
+      status:1   //商品状态1 为在售
     }
   }
+
+// 简单字段的改变：商品名称，描述，库存，价格
+  onValueChange(e){
+    let name = e.target.name,
+        value = e.target.value.trim();
+    this.setState({
+      [name]:value
+    })
+  }
+
   // 品类选择变化
   onCategoryChange(categoryId,parentCategoryId){
-    console.log(categoryId,parentCategoryId)
+    this.setState({
+      categoryId: categoryId,
+      parentCategoryId: parentCategoryId
+    })
   }
 
   // 上传图片成功
@@ -45,11 +64,9 @@ class ProductSave extends Component {
   onImageDelete(e){
     let index = parseInt(e.target.getAttribute('index')),
         subImages = this.state.subImages;
-        console.log(index);
-        console.log(subImages);
+
     subImages.splice(index,1);
     this.setState({subImages});
-    console.log(subImages);
   }
 // 富文本编辑器变化
   onRichEditorDetailChange(value){
@@ -57,6 +74,40 @@ class ProductSave extends Component {
     this.setState({
       detail:value
     })
+  }
+
+//图片
+  _getSubImagesString(){
+    return this.state.subImages.map((image) => image.uri).join(',');
+  } 
+
+// 提交表单
+  onSubmit(){
+    let product = {
+      name       : this.state.name,
+      subtitle   : this.state.subtitle,
+      categoryId : parseInt(this.state.categoryId),
+      subImages  : this._getSubImagesString(),
+      detail     : this.state.detail,
+      price      : parseFloat(this.state.price),
+      stock      : parseInt(this.state.stock),
+      status     : this.state.status,
+    },
+    // 验证
+    productCheckResult = _product.checkProduct(product);
+    // 表单验证成功
+    if(productCheckResult.status){
+      _product.saveProduct(product).then((res) => {
+        _mutil.successTips(res);
+        this.props.history.push('/product/index'); //上传成功之后跳转页面
+      }, err => {
+        _mutil.errorTips(err);
+      });
+    }
+    // 表单验证失败
+    else{
+      _mutil.errorTips(productCheckResult.msg);
+    }
   }
 
   render(){
@@ -68,13 +119,21 @@ class ProductSave extends Component {
             <div className="form-group">
               <label className="col-md-2 control-label">商品名称</label>
               <div className="col-md-5">
-                <input type="text" className="form-control" placeholder="商品名称" />
+                <input type="text" 
+                       className="form-control" 
+                       placeholder="商品名称"
+                       name='name' 
+                       onChange={(e) => this.onValueChange(e)}/>
               </div>
             </div>
             <div className="form-group">
               <label className="col-md-2 control-label">商品描述</label>
               <div className="col-md-5">
-                <input type="text" className="form-control" placeholder="请输入商品描述" />
+                <input type="text" 
+                       className="form-control" 
+                       placeholder="请输入商品描述" 
+                       name='subtitle' 
+                       onChange={(e) => this.onValueChange(e)}/>
               </div>
             </div>
             <CategorySelector 
@@ -83,7 +142,11 @@ class ProductSave extends Component {
               <label className="col-md-2 control-label">商品价格</label>
               <div className="col-md-3">
                 <div className="input-group">
-                  <input type="number" className="form-control" placeholder="请输入商品价格" />
+                  <input type="number" 
+                         className="form-control" 
+                         placeholder="请输入商品价格"
+                         name='price' 
+                         onChange={(e) => this.onValueChange(e)} />
                   <span className="input-group-addon">元</span>
                 </div>
               </div>
@@ -92,7 +155,11 @@ class ProductSave extends Component {
               <label className="col-md-2 control-label">商品库存</label>
               <div className="col-md-3">
                 <div className="input-group">
-                  <input type="number" className="form-control" placeholder="请输入商品库存" />
+                  <input type="number" 
+                         className="form-control" 
+                         placeholder="请输入商品库存"
+                         name='stock' 
+                         onChange={(e) => this.onValueChange(e)} />
                   <span className="input-group-addon">件</span>
                 </div>
               </div>
@@ -129,7 +196,8 @@ class ProductSave extends Component {
             </div>
             <div className="form-group">
               <div className="col-sm-offset-2 col-sm-10">
-                <button className="btn btn-primary">提交</button>
+                <button className="btn btn-primary"
+                      onClick={() => this.onSubmit()}>提交</button>
               </div>
             </div>
           </div>
