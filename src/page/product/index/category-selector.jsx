@@ -23,6 +23,11 @@ class CategorySelector extends Component {
 		this._loadFirstCategory();
 	}
 
+  // props变化时触发
+  componentWillReceiveProps(nextProps){
+    let categoryIdChange = this.props.
+  }
+
 	//加载一级分类
 	_loadFirstCategory(){
 		_product.getCategoryList().then( res => {

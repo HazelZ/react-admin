@@ -24,6 +24,7 @@ class MUtil{
       })
     })
   }
+  
   // 跳转登录
   doLogin(){
     window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname)
