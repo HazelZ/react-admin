@@ -25,6 +25,17 @@ class Product {
     })
   }
 
+  // 获取商品详情
+  getProduct(productId){
+    return _mutil.request({
+      type : 'post',
+      url  : '/manage/product/detail.do',
+      data : {
+        productId: productId || 0
+      }
+    })
+  }
+
   // 变更商品销售状态
   getProductStatus(productInfo){
     return _mutil.request({
