@@ -13,6 +13,13 @@ class RichEditor extends Component {
     this._loadEditor();
   }
 
+// 编辑数据回填
+  componentWillReceiveProps(nextProps){
+    if(this.props.defaultDetail !== nextProps.defaultDetail){
+      this.simditor.setValue(nextProps.defaultDetail);
+    }
+  }
+
   _loadEditor(){
     let element = this.refs['textarea'];
     this.simditor = new Simditor({
