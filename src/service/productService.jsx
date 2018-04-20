@@ -51,7 +51,7 @@ class Product {
       status:true,
       msg: '验证通过'
     };
-    console.log(product);
+    // console.log(product);
     // 判断商品名不能为空
     if(typeof product.name !== 'string' || product.name.length === 0){
       return {

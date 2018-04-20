@@ -72,7 +72,7 @@ class ProductSave extends Component {
 
   // 上传图片成功
   onUploadSuccess(res){
-    console.log(res)
+    // console.log(res)
     let subImages = this.state.subImages;
     subImages.push(res);
     this.setState({
@@ -120,6 +120,10 @@ class ProductSave extends Component {
     },
     // 验证
     productCheckResult = _product.checkProduct(product);
+    if(this.state.id){
+      product.id = this.state.id;
+    }
+    
     // 表单验证成功
     if(productCheckResult.status){
       _product.saveProduct(product).then((res) => {
@@ -239,7 +243,6 @@ class ProductSave extends Component {
       )
   }
 }
-
 
 export default ProductSave;
 
