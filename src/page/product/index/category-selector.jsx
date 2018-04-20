@@ -25,7 +25,29 @@ class CategorySelector extends Component {
 
   // props变化时触发
   componentWillReceiveProps(nextProps){
-    let categoryIdChange = this.props.
+    let categoryIdChange        = this.props.categoryId !== nextProps.categoryId,
+        parentCategoryIdChange  = this.props.parentCategoryId !== nextProps.parentCategoryId;
+    // 数据没有发生变化，直接return，不做处理
+    if(!categoryIdChange && !parentCategoryIdChange){
+        return;
+    }
+    // 判断假如只有一级品类
+    if(nextProps.parentCategoryId === 0){
+      this.setState({
+        firstCategoryId: nextProps.categoryId,
+        secondCategoryId:0
+      });
+    }
+    //有两级品类时
+    else{
+      this.setState({
+        firstCategoryId  : nextProps.parentCategoryId,
+        secondCategoryId : nextProps.categoryId
+      }, () => {
+        parentCategoryIdChange && this._loadSecondCategory();
+        console.log('load2')
+      });
+    }
   }
 
 	//加载一级分类
@@ -43,7 +65,6 @@ class CategorySelector extends Component {
 //加载二级分类
   _loadSecondCategory(){
     _product.getCategoryList(this.state.secondCategoryId).then( res => {
-      // console.log(res)
       this.setState({
         secondCategoryList: res
       });
@@ -96,7 +117,8 @@ class CategorySelector extends Component {
     	<div className="form-group">
         <label className="col-md-2 control-label">所属分类</label>
         <div className="col-md-10">
-          <select 
+          <select
+            value={this.state.firstCategoryId} 
           	className='form-control cate-select'
           	onChange={(e) => this.onFirstCategoryChange(e)}>
             <option value="请选择一级分类">请选择一级分类</option>
@@ -107,17 +129,17 @@ class CategorySelector extends Component {
             }
           </select>
           {
-            this.state.secondCategoryList.length >0 ?
-            (<select className='form-control cate-select'
-              onChange={(e) => this.onSecondCategoryChange(e)}>
-            <option value="请选择二级分类">请选择二级分类</option>
-            {
-              this.state.secondCategoryList.map((category,index) => {
-                return <option value={category.id} key ={index}>{category.name}</option>
-              })
-            }
-          </select>)
-          : null
+            this.state.secondCategoryList.length > 0 ?
+              <select className='form-control cate-select'
+                value={this.state.secondCategoryId}
+                onChange={(e) => this.onSecondCategoryChange(e)}>
+              <option value="请选择二级分类">请选择二级分类</option>
+              {
+                this.state.secondCategoryList.map((category,index) => {
+                  return <option value={category.id} key ={index}>{category.name}</option>
+                })
+              }
+            </select> : null
           }
           
         </div>

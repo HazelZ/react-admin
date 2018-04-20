@@ -33,7 +33,7 @@ class ProductSave extends Component {
     this._loadProduct();
   }
 
-  // 加载商品详情
+  // 接口请求详情数据，并加载出商品详情
   _loadProduct(){
     // 有id的时候，表示是编辑功能，需要表单回填
     if(this.state.id){
@@ -41,14 +41,15 @@ class ProductSave extends Component {
         let images = res.subImages.split(',');
         res.subImages = images.map((imgUri) => {
           return {
-            uri:imgUri,
-            url:res.imageHost + imgUri
+            uri: imgUri,
+            url: res.imageHost + imgUri
           }
         });
-        this.setState(res)
+        res.defaultDetail = res.detail;
+        this.setState(res);
       }, (errMsg) => {
-        _mutil.errorTips(errMsg)
-      })
+        _mutil.errorTips(errMsg);
+      });
     }
   }
 
@@ -71,7 +72,7 @@ class ProductSave extends Component {
 
   // 上传图片成功
   onUploadSuccess(res){
-    console.log(res)
+    // console.log(res)
     let subImages = this.state.subImages;
     subImages.push(res);
     this.setState({
@@ -94,7 +95,7 @@ class ProductSave extends Component {
   }
 // 富文本编辑器变化
   onRichEditorDetailChange(value){
-    console.log(value)
+    // console.log(value)
     this.setState({
       detail:value
     })
@@ -119,6 +120,10 @@ class ProductSave extends Component {
     },
     // 验证
     productCheckResult = _product.checkProduct(product);
+    if(this.state.id){
+      product.id = this.state.id;
+    }
+    
     // 表单验证成功
     if(productCheckResult.status){
       _product.saveProduct(product).then((res) => {
@@ -165,7 +170,7 @@ class ProductSave extends Component {
             <CategorySelector 
               categoryId={this.state.categoryId}
               parentCategoryId={this.state.parentCategoryId}
-              onCategoryChange={(categoryId,parentCategoryId) => this.onCategoryChange(categoryId,parentCategoryId)} />
+              onCategoryChange={(categoryId, parentCategoryId) => this.onCategoryChange(categoryId, parentCategoryId)} />
             <div className="form-group">
               <label className="col-md-2 control-label">商品价格</label>
               <div className="col-md-3">
@@ -222,6 +227,7 @@ class ProductSave extends Component {
               <div className="col-md-10">
                 <RichEditor 
                   detail={this.state.detail}
+                  defaultDetail={this.state.defaultDetail}
                   onValueChange={(value) => this.onRichEditorDetailChange(value)} />
               </div>
             </div>
@@ -237,7 +243,6 @@ class ProductSave extends Component {
       )
   }
 }
-
 
 export default ProductSave;
 
