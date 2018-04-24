@@ -37,7 +37,7 @@ class Product {
   }
 
   // 变更商品销售状态
-  getProductStatus(productInfo){
+  setProductStatus(productInfo){
     return _mutil.request({
       type: 'post',
       url: '/manage/product/set_sale_status.do',
