@@ -37,7 +37,7 @@ class ProductSave extends Component {
   _loadProduct(){
     // 有id的时候，表示是编辑功能，需要表单回填
     if(this.state.id){
-      _product.getProduct(this.state.id).then( (res) => {
+      _product.getProduct(this.state.id).then((res) => {
         let images = res.subImages.split(',');
         res.subImages = images.map((imgUri) => {
           return {
@@ -93,7 +93,8 @@ class ProductSave extends Component {
     subImages.splice(index,1);
     this.setState({subImages});
   }
-// 富文本编辑器变化
+
+  // 富文本编辑器变化
   onRichEditorDetailChange(value){
     // console.log(value)
     this.setState({

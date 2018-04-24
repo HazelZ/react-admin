@@ -20,7 +20,7 @@ class CategorySelector extends Component {
 	}
 	
 	componentDidMount(){
-		this._loadFirstCategory();
+    this._loadFirstCategory();
 	}
 
   // props变化时触发
@@ -34,9 +34,12 @@ class CategorySelector extends Component {
     // 判断假如只有一级品类
     if(nextProps.parentCategoryId === 0){
       this.setState({
-        firstCategoryId: nextProps.categoryId,
-        secondCategoryId:0
+        firstCategoryId  : nextProps.categoryId,
+        secondCategoryId : 0
+      }, () => {
+        // console.log(this.state.secondCategoryId)
       });
+
     }
     //有两级品类时
     else{
@@ -45,7 +48,7 @@ class CategorySelector extends Component {
         secondCategoryId : nextProps.categoryId
       }, () => {
         parentCategoryIdChange && this._loadSecondCategory();
-        console.log('load2')
+        console.log(this.state.secondCategoryId)
       });
     }
   }
@@ -75,6 +78,7 @@ class CategorySelector extends Component {
 
 	//一级品类变化时二级列表相应生成
 	onFirstCategoryChange(e){
+    if(this.props.readOnly) return;
     let newValue = e.target.value || 0;
     // console.log(newValue)
     this.setState({
@@ -89,6 +93,7 @@ class CategorySelector extends Component {
 	}
 // 选择二级品类时
   onSecondCategoryChange(e){
+    if(this.props.readOnly) return;
     let newValue = e.target.value || 0;
     // console.log(newValue)
     this.setState({
@@ -120,7 +125,7 @@ class CategorySelector extends Component {
           <select
             value={this.state.firstCategoryId} 
           	className='form-control cate-select'
-          	onChange={(e) => this.onFirstCategoryChange(e)}>
+          	onChange={(e) => this.onFirstCategoryChange(e)} readOnly={this.props.readOnly}>
             <option value="请选择一级分类">请选择一级分类</option>
             {
             	this.state.firstCategoryList.map((category,index) => {
@@ -132,7 +137,8 @@ class CategorySelector extends Component {
             this.state.secondCategoryList.length > 0 ?
               <select className='form-control cate-select'
                 value={this.state.secondCategoryId}
-                onChange={(e) => this.onSecondCategoryChange(e)}>
+                onChange={(e) => this.onSecondCategoryChange(e)}
+                readOnly={this.props.readOnly}>
               <option value="请选择二级分类">请选择二级分类</option>
               {
                 this.state.secondCategoryList.map((category,index) => {
