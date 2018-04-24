@@ -111,6 +111,16 @@ class Product {
     })
   }
 
+// 更新品类名称
+  updateCategoryName(id){
+    return _mutil.request({
+      type: 'post',
+      url : '/manage/category/get_category.do',
+      data: {
+        categoryId : id || 0
+      }
+    })
+  }
 }
 
 export default Product;
