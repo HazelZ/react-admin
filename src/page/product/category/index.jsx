@@ -1,9 +1,8 @@
 import React,{ Component } from 'react';
 import { Link } from "react-router-dom";
 import PageTitle from 'component/_pageTitle/index';
-
 import TableList from 'utils/tableList/index';
-
+import './index.scss';
 import MUtil from 'utils/mutil';
 import Product from 'service/productService';
 
@@ -71,11 +70,11 @@ class CategoryList extends Component {
           <td>{category.id}</td>
           <td>{category.name}</td>
           <td>
-            <a className='opear'
+            <a className='opera'
                 onClick={(e) => this.onUpdateName(category.id,category.name)}>修改名称</a>
             {
               category.parentId === 0 
-              ? <Link to={`/product-category/index/${category.id}`}>查看子品类</Link> 
+              ? <Link to={`/product-category/index/${category.id}`} className='opera'>查看子品类</Link> 
               : null
             }
           </td>
