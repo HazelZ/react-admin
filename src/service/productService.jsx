@@ -91,7 +91,7 @@ class Product {
     return result;
   }
 
-  //保存商品的接口
+  //保存商品
   saveProduct(product){
     return _mutil.request({
       type: 'post',
@@ -101,6 +101,7 @@ class Product {
   }
   
   // 品类相关
+  // 根据父品类ID获取品类列表 
   getCategoryList(parentCategoryId){
     return _mutil.request({
       type: 'post',
@@ -111,14 +112,21 @@ class Product {
     })
   }
 
-// 更新品类名称
-  updateCategoryName(id){
+// 修改品类名称
+  updateCategoryName(category){
     return _mutil.request({
       type: 'post',
-      url : '/manage/category/get_category.do',
-      data: {
-        categoryId : id || 0
-      }
+      url : '/manage/category/set_category_name.do',
+      data: category
+    })
+  }
+
+  //新增品类
+  saveCategory(category){
+    return _mutil.request({
+      type: 'post',
+      url: '/manage/category/add_category.do',
+      data: category
     })
   }
 }
