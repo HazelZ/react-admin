@@ -16,6 +16,7 @@ import Login from 'page/login/index';
 import ErrorPage from 'page/error/index';
 import UserList from 'page/user/index';
 import OrderList from 'page/order/index';
+import OrderDetail from 'page/order/detail/index';
 
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
 						<Route path="/product" component={ProductRouter} />
 						<Route path="/product-category" component={ProductRouter} />
 						<Route path="/order/index" component={OrderList} />
+						<Route path="/order/detail/:orderNumber" component={OrderDetail} />
 						<Route path="/user/index" component={UserList} />
 						<Redirect exact from="/user" to='/user/index'/>
 						<Redirect exact from="/order" to='/order/index'/>
